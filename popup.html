@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shorts Toggler</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="settings-view" class="view-container">
+        <h2>YouTube Shorts Control</h2>
+        <fieldset id="settings-fieldset" class="mode-selection"> <label for="mode-hide" class="radio-option">
+                <div class="radio-text">
+                    <strong>Hide All Shorts</strong>
+                    <small>Completely hides all Shorts elements.</small>
+                </div>
+                <input type="radio" id="mode-hide" name="mode" value="hide">
+            </label>
+
+            <label for="mode-self" class="radio-option">
+                <div class="radio-text">
+                    <strong>Self-Control</strong>
+                    <small>Set a daily time or scroll limit. Resets at midnight.</small>
+                </div>
+                <input type="radio" id="mode-self" name="mode" value="self_control">
+            </label>
+            
+            <div id="self-control-settings" class="mode-settings">
+                
+                <div id="self-control-status" style="display: none;">
+                    <div class="timer-display">
+                        <span id="self-time-remaining">00:00</span>
+                        <small>Time Remaining Today</small>
+                    </div>
+                    <div class="scroll-display" style="display: none;">
+                        <span id="self-scrolls-remaining">0</span>
+                        <small>Scrolls Remaining Today</small>
+                    </div>
+                </div>
+                <div class="setting-row limit-type-row">
+                    <label>Limit Type:</label>
+                    <div>
+                        <input type="radio" id="self-limit-time" name="self-limit-type" value="time" checked>
+                        <label for="self-limit-time">Time</label>
+                        <input type="radio" id="self-limit-scroll" name="self-limit-type" value="scroll">
+                        <label for="self-limit-scroll">Scrolls</label>
+                    </div>
+                </div>
+                <div id="self-time-limit-row" class="setting-row">
+                    <label for="time-limit">Daily Time Limit (minutes):</label>
+                    <input type="number" id="time-limit" min="1" value="30">
+                </div>
+                <div id="self-scroll-limit-row" class="setting-row" style="display: none;">
+                    <label for="scroll-limit">Daily Scroll Limit:</label>
+                    <input type="number" id="scroll-limit" min="1" value="50">
+                </div>
+            </div>
+
+            <label for="mode-parental" class="radio-option">
+                <div class="radio-text">
+                    <strong>Parental Control</strong>
+                    <small>Lock Shorts behind a password-unlocked session.</small>
+                </div>
+                <input type="radio" id="mode-parental" name="mode" value="parental_control">
+            </label>
+
+            <div id="parental-control-settings" class="mode-settings">
+                <div class="setting-row limit-type-row">
+                    <label>Limit Type:</label>
+                    <div>
+                        <input type="radio" id="parental-limit-time" name="parental-limit-type" value="time" checked>
+                        <label for="parental-limit-time">Time</label>
+                        <input type="radio" id="parental-limit-scroll" name="parental-limit-type" value="scroll">
+                        <label for="parental-limit-scroll">Scrolls</label>
+                    </div>
+                </div>
+                <div id="parental-time-limit-row" class="setting-row">
+                    <label for="parental-time-limit">Session Length (minutes):</label>
+                    <input type="number" id="parental-time-limit" min="1" value="10">
+                </div>
+                <div id="parental-scroll-limit-row" class="setting-row" style="display: none;">
+                    <label for="parental-scroll-limit">Session Scroll Limit:</label>
+                    <input type="number" id="parental-scroll-limit" min="1" value="25">
+                </div>
+                <div class="setting-row">
+                    <label for="pin-input">Set Password:</label>
+                    <input type="password" id="pin-input" placeholder="Min. 4 chars">
+                </div>
+            </div>
+        </fieldset>
+        <button id="save-button">Save Settings</button>
+    </div>
+
+    <div id="parental-unlock-view" class="view-container">
+        <h2>Parental Lock Active</h2>
+        <label for="unlock-pin">Enter Password to Start Session:</label>
+        <input type="password" id="unlock-pin">
+        <button id="unlock-button">Unlock Session</button>
+        <button id="settings-button" class="link-button">Manage Settings</button>
+    </div>
+
+    <div id="parental-session-view" class="view-container">
+        <h2>Shorts Session Active</h2>
+        <div class="timer-display">
+            <span id="time-remaining">00:00</span>
+            <small>Time Remaining</small>
+        </div>
+        <div class="scroll-display" style="display: none;">
+            <span id="scrolls-remaining">0</span>
+            <small>Scrolls Remaining</small>
+        </div>
+        <button id="lock-now-button" class="danger-button">Lock Now</button>
+    </div>
+
+    <div id="status-message"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

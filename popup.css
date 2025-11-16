@@ -1,0 +1,217 @@
+/* 1. Define Color Variables & Base Styles */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --text-color-light: #555;
+    --border-color: #ccc;
+    --accent-color: #007bff;
+    --accent-color-hover: #0056b3;
+    --danger-color: #d93025;
+    --danger-color-hover: #b0261e;
+    --radio-option-bg: #fff;
+    --radio-option-border: #ddd;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #2b2b2b;
+        --text-color: #eee;
+        --text-color-light: #bbb;
+        --border-color: #555;
+        --accent-color: #0088ff;
+        --accent-color-hover: #0066cc;
+        --danger-color: #f25f56;
+        --danger-color-hover: #d93025;
+        --radio-option-bg: #3a3a3a;
+        --radio-option-border: #555;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    width: 280px;
+    padding: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-top: 0;
+}
+
+/* 2. View Container Logic */
+.view-container {
+    display: none; /* All views are hidden by default */
+    flex-direction: column;
+}
+
+/* 3. Settings View Styles (from before) */
+fieldset { border: none; padding: 0; margin: 0; }
+
+.radio-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: var(--radio-option-bg);
+    border: 1px solid var(--radio-option-border);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.radio-option:hover { border-color: var(--accent-color); }
+.radio-text { display: flex; flex-direction: column; margin-right: 10px; }
+.radio-text strong { font-size: 15px; color: var(--text-color); }
+.radio-text small { font-size: 12px; color: var(--text-color-light); }
+input[type="radio"] { width: 1.15em; height: 1.15em; accent-color: var(--accent-color); }
+
+.mode-settings {
+    display: none; /* Hidden by default */
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    margin: -5px 0 10px 10px;
+}
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+label { font-size: 14px; color: var(--text-color-light); }
+
+input[type="number"], input[type="password"] {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+#unlock-pin { width: 100%; box-sizing: border-box; text-align: center; font-size: 1.2em; }
+
+/* 4. Button and Status Styles */
+button {
+    padding: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+button:hover { background-color: var(--accent-color-hover); }
+
+.danger-button {
+    background-color: var(--danger-color);
+}
+.danger-button:hover {
+    background-color: var(--danger-color-hover);
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 13px;
+    padding: 5px;
+    margin-top: 5px;
+}
+.link-button:hover { text-decoration: underline; }
+
+#status-message {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* 5. New Session/Unlock View Styles */
+#parental-unlock-view, #parental-session-view {
+    align-items: center;
+}
+.timer-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--radio-option-bg);
+    border-radius: 8px;
+}
+.timer-display span {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+.timer-display small {
+    font-size: 0.9em;
+    color: var(--text-color-light);
+}
+
+/* 6. New Limit Type and Scroll Styles */
+
+.limit-type-row {
+    justify-content: space-between;
+}
+
+/* Style for the radio button labels (Time, Scrolls) */
+.limit-type-row label {
+    font-size: 14px;
+    margin-right: 5px;
+    color: var(--text-color-light);
+}
+/* Style for the radio buttons themselves */
+.limit-type-row input[type="radio"] {
+    width: 0.9em;
+    height: 0.9em;
+    accent-color: var(--accent-color);
+}
+/* Make the "Scrolls" radio button have a left margin */
+#self-limit-scroll, #parental-limit-scroll {
+    margin-left: 10px;
+}
+
+/* Style for the new scroll counter display */
+.scroll-display {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--radio-option-bg);
+    border-radius: 8px;
+}
+.scroll-display span {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+.scroll-display small {
+    font-size: 0.9em;
+    color: var(--text-color-light);
+}
+
+/* 7. New Self-Control Status */
+#self-control-status {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* We can re-use the timer/scroll display styles */
+#self-control-status .timer-display,
+#self-control-status .scroll-display {
+    margin: 0;
+    padding: 10px 0;
+}
+
+#self-control-status .timer-display span,
+#self-control-status .scroll-display span {
+    font-size: 2em; /* A bit smaller */
+}
